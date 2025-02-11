@@ -1,1 +1,1 @@
-# config-vault
+# Config Vault
