@@ -1,5 +1,4 @@
 # Config Vault - IN PROGRESS
-### About the Project
 <p>Config Vault is a web-based platform that allows gamers to store, manage, and access their game settings from anywhere. Whether it’s key bindings, sensitivity levels, or graphics configurations, users can securely save and retrieve their settings across multiple devices.</p>
 
 ## Features - NOT FINISHED
