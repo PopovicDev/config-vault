@@ -1,0 +1,626 @@
+.homepage{
+    position:relative;
+}
+
+.header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+    height:50px;
+    padding:10px;
+    margin-bottom:10px;
+    border: 2px solid #5E17EB;
+}
+
+.sidebar{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding:200px 10px;
+    position:absolute;
+    height:calc(100vh - 80px);
+    width:100%;
+    top:-150vh;
+    text-align:center;
+    row-gap:30px;
+    opacity:0;
+    transition:top 300ms, opacity 300ms;
+    z-index:1;
+    border: 2px solid #5E17EB;
+}
+
+.sidebar h3{
+    font-size:1.75rem;
+    color:#D4AF37;
+}
+
+.sidebar > h3 i{
+    font-size:2rem;
+}
+
+.sidebar li{
+    list-style-type:none;
+    padding:15px 0;
+    color:#E0E0E0;
+}
+
+.sidebar li i{
+    font-size:1.25rem;
+    padding-right:10px;
+    width:25px;
+}
+
+.sidebar > p{
+    color:#E0E0E0;
+}
+
+.sidebar-friends{
+    display:flex;
+    width:100%;
+    justify-content:center;
+    align-items: center;
+    column-gap:25px;
+    position:relative;
+}
+
+.sidebar-friends i{
+    transition:color 200ms;
+}
+
+.sidebar-friends button{
+    position:absolute;
+    right:20px;
+    font-size:1.75rem;
+}
+
+:is(.sidebar-friends button, .config button, .friends-buttons button, .game button){
+    background-color: transparent;
+}
+
+.sidebar-login{
+    background-color:#6A0DAD;
+    color:#fff;
+    width:60%;
+    height:30px;
+    box-shadow: 0 0 10px #8A2BE2;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.sidebar-login:hover{
+    box-shadow: 0 0 20px #8A2BE2, 0 0 40px #4B0082;
+    transform: scale(1.01);
+}
+
+.bg-menu{
+    font-size:1.5rem;
+    color:#FFD700;
+    cursor:pointer;
+    transition:color 200ms;
+}
+
+#burger-menu{
+    display:none;
+}
+
+#burger-menu:checked ~ .sidebar{
+    top:60px;
+    opacity:1;
+}
+
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#6A0DAD;
+    border-radius:50%;
+    height:35px;
+    width:35px;
+    font-size:1.1rem;
+    box-shadow: 0 0 10px #8A2BE2;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.login:hover{
+    box-shadow: 0 0 20px #8A2BE2, 0 0 40px #4B0082;
+    transform: scale(1.01);
+}
+
+.mainpage-section{
+    position:relative;
+    height:calc(100vh - 80px);
+}
+
+.mainpage-section::-webkit-scrollbar{
+    width:0px;
+}
+
+.cfg-box1{
+    display:flex;
+    flex-direction: column;
+    row-gap:10px;
+}
+
+.your-configs{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:100%;
+    height:auto;
+    padding:10px;
+    overflow-y:scroll;
+}
+
+.your-configs::-webkit-scrollbar{
+    width: 8px;
+}
+
+.your-configs::-webkit-scrollbar-track{
+    background: #16163A;
+    border-radius: 10px;
+}
+
+.your-configs::-webkit-scrollbar-thumb {
+    background: #5E17EB;
+    border-radius: 10px;
+}
+
+.your-configs::-webkit-scrollbar-thumb:hover {
+    background: #9D00FF;
+}
+
+:is(.your-configs img, .game img, .saved-settings img){
+    height:50px;
+    width: 50px;
+}
+
+.your-configs > h3{
+    padding-bottom:30px;
+    font-size:1.5rem;
+    color:#D4AF37;
+}
+
+.cfg-section{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    animation:sectionFadeIn ease-out 0.4s forwards;
+}
+
+.cfg-section > h4{
+    color:#A0A0C0;
+}
+
+.configs{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.config{
+    display:flex;
+    align-items: center;
+    column-gap:20px;
+    font-size:1.15rem;
+    color:#E0E0E0;
+}
+
+:is(.config i, .game i){
+    font-size:1.5rem;
+    font-weight:100;
+    transition:color 200ms;
+}
+
+.game-slider{
+    width:100%;
+    height:207px;
+    padding:10px;
+}
+
+.game-slider h2{
+    color:#D4AF37;
+}
+
+.game-slider p{
+    color:#A0A0C0;
+}
+
+.friends-mob{
+    display:flex;
+    height:auto;
+    width:100%;
+    padding:40px 20px;
+    column-gap:20px;
+    position: relative;
+}
+
+.friends-desk{
+    display:none;
+}
+
+.friend{
+    display:flex;   
+    align-items: center;
+    flex-direction: column;
+    padding:30px 10px;
+    transition:border 200ms, box-shadow 300ms;
+}
+
+.friend img{
+    border-radius:5px;
+}
+
+.friend button{
+    transition:background-color 200ms, box-shadow 200ms;
+}
+
+.friend button:hover{
+    background-color:#9D00FF;
+    box-shadow: 0 0 10px #8A2BE2, 0 0 20px #4B0082;
+}
+
+.friend:hover{
+    border-color: #9D00FF;
+    box-shadow: 0 0 5px #8A2BE2, 0 0 10px #4B0082;
+}
+
+
+.friend-info{
+    display:flex;
+    flex-direction: column;
+    row-gap:10px;
+    color:#E0E0E0;
+}
+
+:is(.friend-info button, .friend button){
+    background-color:#6A0DAD;
+    color:#fff; 
+    height:30px;
+    padding:5px 10px;
+}
+
+.friends-buttons{
+    position: absolute;
+    bottom:0;
+    right:5px;
+}
+
+.friends-buttons button{
+    font-size:1.5rem;
+    padding:5px 10px;
+}
+
+.bg-menu:hover{
+    color:#FF4500;
+}
+
+.sidebar-friends i:hover{
+    color:#FF4500;
+}
+
+.config i:hover{
+    color:#FF4500;
+}
+
+.game i:hover{
+    color:#FF4500;
+}
+
+.login-message{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+.login-message div{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    text-align: center;
+    row-gap:10px;
+    padding:20px;
+    border-radius:10px;
+    background-color: #0D0D21;
+    color: #E0E0E0;
+    box-shadow: 0 0 100px #8A2BE2;
+}
+
+:is(.games-section, .saved-section){
+    display:flex;
+    align-items:center;
+    flex-direction: column;
+    height:calc(100vh - 80px);
+    padding:10px;
+    animation:sectionFadeIn ease-out 0.4s forwards;
+}
+
+:is(.games-section h1, .saved-section h1){
+    padding-bottom:50px;
+    color:#D4AF37;
+}
+
+:is(.games, .saved-settings){
+    display:flex;
+    flex-direction: column;
+    row-gap:20px;
+}
+
+:is(.game, .saved-settings div) {
+    display:flex;
+    align-items:center;
+    column-gap:20px;
+    font-size:1.15rem;
+    border-bottom:1px solid #5E17EB;
+    color:#E0E0E0;
+}
+
+@media (hover: none) {
+    button:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .friend:hover{
+        transform: none;
+        box-shadow: none;
+    }
+
+    i:hover{
+        transform: none;
+        box-shadow: none;
+    }
+
+    button:active {
+        transform: scale(0.95);
+    }
+  }
+
+@media only screen and (min-width:600px){
+    .homepage{
+        display:flex;
+        position:unset;
+        width:100%;
+        column-gap:10px;
+    }
+    .sidebar{
+        width:40%;
+        opacity:1;
+        position:relative;
+        top:unset;
+        text-align: unset;
+        align-items: unset;
+        padding:10px;
+        height:calc(100vh - 20px);
+    }
+
+    .sidebar > button{
+        align-self:center;
+        position:absolute;
+        bottom:20px;
+        width:90%;
+    }
+
+    .sidebar h3{
+        font-size:1.5rem;
+    }
+
+    .sidebar-friends button{
+        right:0px;
+    }
+
+    .header label{
+        display:none;
+    }
+
+    .header-mainpage{
+        width:60%;
+    }
+}
+
+@media only screen and (min-width:768px){
+    .sidebar{
+        width:30%;
+    }
+
+    .sidebar li i{
+        font-size:1.5rem;
+        padding-right:10px;
+        width:35px;
+    }
+
+    .header-mainpage{
+        width:70%;
+    }
+
+    .your-configs{
+        align-items: unset;
+    }
+    
+    .your-configs h3{
+        align-self:center;
+    }
+
+    .cfg-section > h4{
+        font-size:1.5rem;
+    }
+
+    .friends-mob{
+        display:none;
+    }
+
+    .friends-desk{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap:30px;
+        color:#E0E0E0;
+    }
+    
+    .friends-desk img{
+        width:100px;
+        height:100px;
+        margin-bottom:5px;
+    }
+
+    .friends-desk h3{
+        margin-bottom:20px;
+    }
+
+    .friend button{
+        font-size:0.75rem;
+    }
+    
+    :is(.games-section, .saved-section){
+        align-items:unset;
+        padding:10px 30px;
+    }
+
+    :is(.games-section h1, .saved-section h1){
+        align-self:center;
+    }
+}
+
+@media only screen and (min-width:1024px){
+    .header{
+        height:60px;
+    }
+
+    .login{
+        height:45px;
+        width:45px;
+        font-size:1.25rem;
+    }
+
+    .sidebar{
+        width:25%;
+        padding:20px;
+    }
+
+    .friends-desk{
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .header-mainpage{
+        width:75%;
+    }
+
+    .cfg-box1{
+        flex-direction: row;
+        row-gap:0px;
+        column-gap:10px;
+    }
+
+    .cfg-section > h4{
+        font-size:1.5rem;
+    }
+
+    .your-configs h4{
+        font-size:1.15rem;
+    }
+
+    .game-slider{
+        order:1;
+        height: unset;
+        width:60%;
+    }
+
+    .game-slider h2{
+        font-size:2rem;
+        padding-bottom:10px;
+    }
+
+    .game-slider p{
+        font-size:1.1rem;
+    }
+
+    .your-configs{
+        order:2;
+        width:40%;
+    }
+
+    .login-message div{
+        width:50%;
+    }
+
+    .games-section{
+        height:calc(100vh - 90px);
+    }
+
+    .saved-section {
+        height:calc(100vh - 90px);
+    }
+
+    .mainpage-section{
+        height:calc(100vh - 90px);
+    }
+}
+
+@media only screen and (min-width:1280px){
+    .sidebar{
+        width:20%;
+    }
+    .header-mainpage{
+        width:80%;
+    }
+    
+    .friends-desk{
+        grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    }
+    
+    .game-slider{
+        width:70%;
+        padding:30px;
+    }
+
+    .your-configs{
+        width:30%;
+        justify-content: unset;
+        padding:30px 15px;
+    }
+
+    .cfg-box1{
+        height: 490px;
+    }
+
+    .friends-desk img{
+        width:150px;
+        height:150px;
+    }
+
+    :is(.your-configs img, .game img, .saved-settings img){
+        height:75px;
+        width:75px;
+        border-radius:5px;
+    }
+
+    .configs{
+        row-gap:30px;
+    }
+
+    .config i{
+        font-size:2rem;
+    }
+}
+
+@media only screen and (min-width:1440px) {
+    .sidebar > h3{
+        font-size:2rem;
+    }
+
+    .sidebar li i{
+        font-size:1.5rem;
+    }
+
+    .game-slider h2{
+        font-size:3rem;
+    }
+
+    .game-slider p{
+        font-size:1.25rem;
+    }
+}
