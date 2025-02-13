@@ -15,43 +15,44 @@ function App(){
 function Homepage({loginstatus}){
   const [mainpageStatus, setMainpageStatus] = useState('cfg');
   const [burgerChecked, setBurgerChecked] = useState(false);
+  const [loginWindow, setLoginWindow] = useState({status:false, type:null});
   return (
     <div className='homepage'>
       <input type='checkbox' id='burger-menu' checked={burgerChecked} onChange={()=>setBurgerChecked(!burgerChecked)}/>
-      <Sidebar loginstatus={loginstatus} mpstatus={setMainpageStatus} burgerChecked={burgerChecked} setBurgerChecked={setBurgerChecked}/>
+      <Sidebar loginstatus={loginstatus} mpstatus={setMainpageStatus} setBurgerChecked={setBurgerChecked} setloginstatus={setLoginWindow}/>
       <div className='header-mainpage'>
-        <Header loginstatus={loginstatus}/>
-        <Mainpage loginstatus={loginstatus} pageStatus={mainpageStatus}/>
+        <Header loginstatus={loginstatus} setloginstatus={setLoginWindow}/>
+        <Mainpage loginstatus={loginstatus} pageStatus={mainpageStatus} loginwindowstatus={loginWindow} setloginwindow={setLoginWindow}/>
       </div>
     </div>
   )
 }
 
-function Header({loginstatus}){
+function Header({loginstatus, setloginstatus}){
   return (
     <div className='header section' style={{justifyContent: (!loginstatus && window.innerWidth > 600) ? 'flex-end' : 'space-between'}}>
       <label htmlFor='burger-menu'><i className="fa-solid fa-bars bg-menu"/></label>
       <div className='header-funcs'>
-          {!loginstatus && <Login/>}
+          {!loginstatus && <Login setloginstatus={setloginstatus}/>}
       </div>
     </div>
   )
 }
 
-function Login(){
+function Login({setloginstatus}){
   return (
-    <button className='login' aria-label='Login'>
+    <button className='login' aria-label='Login' onClick={()=>{setloginstatus({status:true, type:'login'})}}>
       <i className="fa-solid fa-right-to-bracket"/>
     </button>
   )
 }
 
-function Sidebar({loginstatus, mpstatus, burgerChecked, setBurgerChecked}){
+function Sidebar({loginstatus, mpstatus, setBurgerChecked, setloginstatus}){
   return (
     <div className='sidebar section'>
     <h3><i className="fa-solid fa-dice-d20"></i> My Dashboard</h3>
       <ul>
-        <li key={0} onClick={()=>{mpstatus('cfg'); setBurgerChecked(false); window.scrollTo({top: 0, behavior: 'smooth'});}}><i className="fa-solid fa-house"></i> Homepage</li>
+        <li key={0} onClick={()=>{mpstatus('cfg'); setBurgerChecked(false); setloginstatus({status:false, type:null}); window.scrollTo({top: 0, behavior: 'smooth'});}}><i className="fa-solid fa-house"></i> Homepage</li>
         {loginstatus && <li key={1} onClick={()=>{mpstatus('games'); setBurgerChecked(false);}}><i className="fa-solid fa-gamepad"></i> Games</li>}
         {loginstatus && <li key={2} onClick={()=>{mpstatus('saved'); setBurgerChecked(false);}}><i className="fa-solid fa-list-check"></i> Saved Settings</li>}
         {loginstatus && <li key={3}><i className="fa-solid fa-plus"></i> Add Settings</li>}
@@ -63,13 +64,12 @@ function Sidebar({loginstatus, mpstatus, burgerChecked, setBurgerChecked}){
         </button>
       </div>
       {!loginstatus ? <p>If you want to add friends, you'll need to log in!</p> : <ul></ul>}
-      {loginstatus ? <button className='sidebar-login' aria-label='Log out'><i className="fa-solid fa-plug-circle-xmark"></i> LOG OUT</button> : <button className='sidebar-login' aria-label='Login'><i className="fa-solid fa-right-to-bracket"></i> LOG IN</button>}
+      {loginstatus ? <button className='sidebar-login' aria-label='Log out'><i className="fa-solid fa-plug-circle-xmark"></i> LOG OUT</button> : <button className='sidebar-login' aria-label='Login' onClick={()=>{setloginstatus({status:true, type:'login'});setBurgerChecked(false)}}><i className="fa-solid fa-right-to-bracket"></i> LOG IN</button>}
     </div>
   )
 }
 
-function Mainpage({loginstatus, pageStatus}){
-  const pageactive = 'display: flex;';
+function Mainpage({loginstatus, pageStatus, loginwindowstatus, setloginwindow}){
   return (
     <div className='mainpage-section' style={{overflowY: loginstatus ? 'scroll' : 'hidden'}}>
       <div className='mainpage' style={{filter: loginstatus ? 'blur(0px)' : 'blur(8px)'}}>
@@ -125,11 +125,47 @@ function Mainpage({loginstatus, pageStatus}){
         )}
       </div>
         {!loginstatus && (
-          <div className='login-message'>
-            <div className='login-message-box'>
+          <div className='login-section'>
+            {!loginwindowstatus.status ? (
+              <div className='login-message-box'>
               <h3>ConfigVault helps gamers store, manage, and share their game configurations effortlessly.<br/><br/>Customize settings, access them anytime, and explore setups from other players — all in one place!<br/><br/></h3>
-              <button className='sidebar-login' aria-label='Login'><i className="fa-solid fa-right-to-bracket"></i> LOG IN</button>
+              <button className='sidebar-login' aria-label='Login' onClick={()=>{setloginwindow({status:true, type:'login'})}}><i className="fa-solid fa-right-to-bracket"></i> LOG IN</button>
             </div>
+            ):(
+              <div className='login-box'>
+                {loginwindowstatus.type === 'login' && (<div className='login-form'>
+                  <form>
+                    <h2>Log into your account</h2>
+                    <input type='text' placeholder='Username'/>
+                    <input type='password' placeholder='Password'/>
+                    <button className='sidebar-login' aria-label='Log in' onClick={(e)=>{e.preventDefault();}}><i className="fa-solid fa-right-to-bracket"></i> LOG IN</button>
+                  </form>
+                  <div className='login-buttons'>
+                    <button aria-label='Create account' onClick={()=>setloginwindow({status:true, type:'register'})}>Register account</button>
+                    <button aria-label='Forgot password'>Forgot password?</button>
+                  </div>
+                </div>)}
+                {loginwindowstatus.type === 'register' && (
+                  <div className='register-form'>
+                    <form>
+                      <h2>Create an account</h2>
+                      <div>
+                        <input type='text' placeholder='Name'/>
+                        <input type='text' placeholder='Surname'/>
+                      </div>
+                      <input type='text' placeholder='Username'/>
+                      <input type='email' placeholder='Email'/>
+                      <input type='password' placeholder='Password'/>
+                      <input type='password' placeholder='Confirm password'/>
+                      <button className='sidebar-login' aria-label='Register' onClick={(e)=>{e.preventDefault();}}><i className="fa-solid fa-right-to-bracket"></i> REGISTER</button>
+                    </form>
+                    <div className='register-buttons'>
+                      <p>Already have an account? <button aria-label='Log in' onClick={()=>{setloginwindow({status:true, type:'login'})}}>Log in</button></p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
     </div>

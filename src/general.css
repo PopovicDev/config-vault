@@ -59,7 +59,7 @@ i{
     border: 1px solid rgba(94, 23, 235, 0.3);
 }
 
-@keyframes sectionFadeIn {
+@keyframes sectionFadeIn1 {
     0% {
         opacity: 0;
         transform: translateY(15px);
@@ -67,5 +67,14 @@ i{
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes sectionFade{
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity:1;
     }
 }
