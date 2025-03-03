@@ -15,9 +15,9 @@
 <h4>📀 Large amount of game configurations</h4>
 <p>We'll give our best to add as much many games to the project, so you can save any game configuration! (All the popular games will be added)</p>
 
-## Tech Stack - [MERN STACK]
+## Tech Stack - [PERN STACK]
 <ul>
   <li>Frontend: ReactJS</li>
   <li>Backend: Node.js, Express.js</li>
-  <li>Database: MongoDB</li>
+  <li>Database: PostgreSQL</li>
 </ul>
