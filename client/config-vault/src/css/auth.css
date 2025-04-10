@@ -1,0 +1,222 @@
+.login-message-box{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    text-align: center;
+    width:90%;
+    opacity:0;
+    row-gap:10px;
+    padding:20px;
+    border-radius:10px;
+    color:var(--text-color);
+    background-color:var(--background-color);
+    box-shadow: 0 0 100px var(--primary-color-dark1);
+    animation:sectionFade ease-in-out 0.4s forwards;
+}
+
+.login-box{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    width:100%;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+}
+
+.auth-page{
+    height:100vh;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.auth-page h1{
+    margin-bottom:100px;
+    color:transparent;
+    -webkit-text-stroke: 1px var(--text-color);
+    font-size:clamp(2rem, 5vw, 5rem);
+    text-shadow:0 0 70px var(--primary-color-dark1);
+}
+
+.go-back{
+    display:flex;
+    gap:10px;
+    cursor:pointer;
+    position:absolute;
+    top:20px;
+    left:20px;
+    padding:15px;
+    color:var(--text-color-dark1);
+    background-color: var(--background-color-light);
+    border:1px solid var(--border-color);
+    transition:background-color 200ms, color 200ms, gap 500ms, box-shadow 300ms;
+}
+
+.go-back:hover{
+    background-color: unset;
+    color:var(--text-color);
+    gap:15px;
+    box-shadow:0 0 10px var(--primary-color-light);
+}
+
+.login-form{
+    display:flex;
+    flex-direction: column;
+    row-gap:5px;
+    width:70%;
+}
+
+:is(.login-form form, .register-form form){
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap:10px;
+    width:100%;
+}
+
+:is(.login-form h2, .register-form h2){
+    padding-bottom:20px;
+    text-align:center;
+    color:var(--secondary-color);
+}
+
+:is(.login-form input, .register-form input){
+    height:30px;
+    width:100%;
+    border-radius:5px;
+    border:none;
+    outline:none;
+    padding:0 10px;
+    border:2px solid transparent;
+    transition:border 200ms, background-color 200ms, color 200ms;
+    z-index:5;
+}
+
+.login-form input:focus-within, .register-form input:focus-within{
+    border:2px solid var(--border-color);
+    background-color:var(--background-color);
+    color:var(--secondary-color-dark1);
+    box-shadow:0 0 5px var(--primary-color-dark1);
+}
+
+.login-form input:focus-within::placeholder, .register-form input:focus-within::placeholder{
+    color:#8d7525;
+}
+
+:is(.login-form button, .register-form button){
+    width:100%;
+}
+
+.login-buttons{
+    display:flex;
+    justify-content: space-between;
+    column-gap:10px;
+    margin-top:10px;
+    width:100%;
+}
+
+:is(.login-buttons button, .register-buttons button){
+    background-color:transparent;
+    text-decoration:underline var(--secondary-color);
+    color:#E0E0E0;
+    width:unset;
+    transition:text-decoration 300ms;
+}
+
+.register-form{
+    display:flex;
+    flex-direction: column;
+    width:70%;
+}
+
+.register-form form > div{
+    display:flex;
+    width:100%;
+    column-gap:10px;
+}
+
+.register-buttons{
+    margin-top:10px;
+    width:100%;
+}
+
+.register-buttons button{
+    width:unset;
+}
+
+.register-buttons button:hover, .login-buttons button:hover{
+    text-decoration:underline var(--decoration-color);
+    background-color: transparent;
+}
+
+.register-buttons p {
+    font-size:0.85rem;
+    color:var(--text-color-dark1);
+}
+
+/*MEDIA QUERIES*/
+@media (hover: none){
+    .register-buttons button:active, .login-buttons button:active{
+        text-decoration:underline var(--decoration-color);
+    }
+}
+
+@media only screen and (min-width:768px){
+    .login-box h2{
+        font-size:2rem;
+    }
+
+    :is(.login-form input, .register-form input){
+        height:40px;
+    }
+
+    :is(.login-form button, .register-form button){
+        height:40px;
+    }
+}
+
+@media only screen and (min-width:1024px){
+    .login-message-box{
+        width:50%;
+    }
+
+    .login-form{
+        width:50%;
+    }
+
+    .register-form{
+        width:50%;
+    }
+
+    .login-box h2{
+        font-size:2.5rem;
+    }
+}
+
+@media only screen and (min-width:1280px){
+    .login-form{
+        width:40%;
+    }
+
+    .register-form{
+        width:40%;
+    }
+}
+
+@media only screen and (min-width:1440px){
+    .login-form{
+        width:35%;
+    }
+
+    .register-form{
+        width:35%;
+    }
+}

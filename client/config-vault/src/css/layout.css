@@ -1,0 +1,13 @@
+.layout-page{
+    position:relative;
+}
+
+
+@media only screen and (min-width:600px){
+    .layout-page{
+        display:flex;
+        position:unset;
+        width:100%;
+        column-gap:10px;
+    }
+}

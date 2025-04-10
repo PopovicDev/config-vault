@@ -1,0 +1,336 @@
+:is(.config button, .friends-buttons button, .game button){
+    background-color: transparent;
+}
+
+.mainpage-section{
+    position:relative;
+    height:calc(100vh - 80px);
+}
+
+.mainpage-section::-webkit-scrollbar{
+    width:0px;
+}
+
+.cfg-box1{
+    display:flex;
+    flex-direction: column;
+    row-gap:10px;
+}
+
+.your-configs{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:100%;
+    height:auto;
+    padding:10px;
+    overflow-y:scroll;
+}
+
+.your-configs::-webkit-scrollbar{
+    width: 8px;
+}
+
+.your-configs::-webkit-scrollbar-track{
+    background: var(--background-color-light);
+    border-radius: 10px;
+}
+
+.your-configs::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+.your-configs::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color-light);
+}
+
+.your-configs img{
+    height:50px;
+    width: 50px;
+}
+
+.your-configs > h3{
+    padding-bottom:30px;
+    font-size:1.5rem;
+    color:var(--secondary-color-dark1);
+}
+
+.cfg-section{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    animation:sectionFadeIn1 ease-out 0.4s forwards;
+}
+
+.cfg-section > h4{
+    color:var(--text-color-dark1);
+}
+
+.configs{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.config{
+    display:flex;
+    align-items: center;
+    column-gap:20px;
+    font-size:1.15rem;
+    color:var(--text-color);
+}
+
+.config i{
+    font-size:1.5rem;
+    font-weight:100;
+    transition:color 200ms;
+}
+
+.game-slider{
+    width:100%;
+    height:207px;
+    padding:10px;
+}
+
+.game-slider h2{
+    color:var(--secondary-color-dark1);
+}
+
+.game-slider p{
+    color:var(--text-color-dark1);
+}
+
+.friends-mob{
+    display:flex;
+    height:auto;
+    width:100%;
+    padding:40px 20px;
+    column-gap:20px;
+    position: relative;
+}
+
+.friends-desk{
+    display:none;
+}
+
+.friend{
+    display:flex;   
+    align-items: center;
+    flex-direction: column;
+    padding:30px 10px;
+    transition:border 200ms, box-shadow 300ms;
+}
+
+.friend img{
+    border-radius:5px;
+}
+
+.friend button{
+    transition:background-color 200ms, box-shadow 200ms;
+}
+
+.friend button:hover{
+    background-color:var(--primary-color-light);
+    box-shadow: 0 0 10px var(--primary-color-dark1), 0 0 20px var(--primary-color-dark2);
+}
+
+.friend:hover{
+    border-color: var(--primary-color-light);
+    box-shadow: 0 0 5px var(--primary-color-dark1), 0 0 10px var(--primary-color-dark2);
+}
+
+
+.friend-info{
+    display:flex;
+    flex-direction: column;
+    row-gap:10px;
+    color:var(--text-color);
+}
+
+:is(.friend-info button, .friend button){
+    background-color:var(--primary-color);
+    color:var(--text-color); 
+    height:30px;
+    padding:5px 10px;
+}
+
+.friends-buttons{
+    position: absolute;
+    bottom:0;
+    right:5px;
+}
+
+.friends-buttons button{
+    font-size:1.5rem;
+    padding:5px 10px;
+}
+
+.config i:hover{
+    color:var(--decoration-color);
+}
+
+@media (hover: none) {
+    .friend:hover{
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+@media only screen and (min-width:600px){
+    .header-mainpage{
+        width:60%;
+    }
+}
+
+@media only screen and (min-width:768px){
+    .header-mainpage{
+        width:70%;
+    }
+
+    .your-configs{
+        align-items: unset;
+    }
+    
+    .your-configs h3{
+        align-self:center;
+    }
+
+    .cfg-section > h4{
+        font-size:1.5rem;
+    }
+
+    .friends-mob{
+        display:none;
+    }
+
+    .friends-desk{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap:30px;
+        color:var(--text-color);
+    }
+    
+    .friends-desk img{
+        width:100px;
+        height:100px;
+        margin-bottom:5px;
+    }
+
+    .friends-desk h3{
+        margin-bottom:20px;
+    }
+
+    .friend button{
+        font-size:0.75rem;
+    }
+}
+
+@media only screen and (min-width:1024px){
+    .login{
+        height:45px;
+        width:45px;
+        font-size:1.25rem;
+    }
+
+    .friends-desk{
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .header-mainpage{
+        width:75%;
+    }
+
+    .cfg-box1{
+        flex-direction: row;
+        row-gap:0px;
+        column-gap:10px;
+    }
+
+    .cfg-section > h4{
+        font-size:1.5rem;
+    }
+
+    .your-configs h4{
+        font-size:1.15rem;
+    }
+
+    .game-slider{
+        order:1;
+        height: unset;
+        width:60%;
+    }
+
+    .game-slider h2{
+        font-size:2rem;
+        padding-bottom:10px;
+    }
+
+    .game-slider p{
+        font-size:1.1rem;
+    }
+
+    .your-configs{
+        order:2;
+        width:40%;
+    }
+
+    .mainpage-section{
+        height:calc(100vh - 90px);
+    }
+}
+
+@media only screen and (min-width:1280px){
+    .header-mainpage{
+        width:80%;
+    }
+    
+    .friends-desk{
+        grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    }
+    
+    .game-slider{
+        width:70%;
+        padding:30px;
+    }
+
+    .your-configs{
+        width:30%;
+        justify-content: unset;
+        padding:30px 15px;
+    }
+
+    .cfg-box1{
+        height: 490px;
+    }
+
+    .friends-desk img{
+        width:150px;
+        height:150px;
+    }
+
+    .your-configs img{
+        height:75px;
+        width:75px;
+        border-radius:5px;
+    }
+
+    .configs{
+        row-gap:30px;
+    }
+
+    .config i{
+        font-size:2rem;
+    }
+}
+
+@media only screen and (min-width:1440px) {
+    .game-slider h2{
+        font-size:3rem;
+    }
+
+    .game-slider p{
+        font-size:1.25rem;
+    }
+}
