@@ -22,6 +22,11 @@
   <li>Database: PostgreSQL</li>
 </ul>
 
+### Tools Used
+<ul>
+<li>Postman – for developing and testing APIs</li>
+</ul>
+
 ## 📅 Updates/Changelog
 
 ### 10.04.2025.
