@@ -24,7 +24,8 @@
 
 ### Tools Used
 <ul>
-<li>Postman – for developing and testing APIs</li>
+  <li>Postman – for developing and testing APIs</li>
+  <li>Neon – for hosting the PostgreSQL database</li>
 </ul>
 
 ## 📅 Updates/Changelog
