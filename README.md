@@ -22,6 +22,12 @@
   <li>Database: PostgreSQL</li>
 </ul>
 
+### Tools Used
+<ul>
+  <li>Postman – for developing and testing APIs</li>
+  <li>Neon – for hosting the PostgreSQL database</li>
+</ul>
+
 ## 📅 Updates/Changelog
 
 ### 10.04.2025.
@@ -30,3 +36,6 @@
 - Implemented routing using React Router
 - Connected backend with PostgreSQL via Neon
 - Started the user authentication process
+
+### 28.04.2025.
+- Finished all the APIs for User authentication, frontend still uncompleted
