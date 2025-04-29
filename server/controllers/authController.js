@@ -52,7 +52,7 @@ export const login = async (req, res) => {
         return res.json({ success: false, message: 'All fields are required!' });
     }
     try {
-        const user = await pool.query('SELECT * FROM cfgvault."USERS" WHERE email = $1', [email]);
+        const user = await pool.query('SELECT "user_id", "password" FROM cfgvault."USERS" WHERE email = $1', [email]);
 
         if(user.rows.length === 0) {
             return res.json({ success: false, message: 'User not found!'});
@@ -98,7 +98,7 @@ export const logout = async (req, res) => {
 export const sendVerifyOtp = async (req, res) => {
     try{
         const { userId } = req.body;
-        const user = await pool.query('SELECT * FROM cfgvault."USERS" WHERE user_id = $1', [userId]);
+        const user = await pool.query('SELECT "isAccountVerified", email FROM cfgvault."USERS" WHERE user_id = $1', [userId]);
         if(user.rows[0].isAccountVerified === true){
             return res.json({status: false, message: 'User already verified!'});
         }
@@ -132,7 +132,7 @@ export const verifyMail = async (req, res) => {
             return res.json({ success: false, message: 'All fields are required!' });
         }
 
-        const user = await pool.query('SELECT * FROM cfgvault."USERS" WHERE user_id = $1', [userId]);
+        const user = await pool.query('SELECT "verifyOtp", "verifyOtpExpireAt FROM cfgvault."USERS" WHERE user_id = $1', [userId]);
 
         if(user.rows[0].length === 0) {
             return res.json({ success: false, message: 'User not found!' });
@@ -171,7 +171,7 @@ export const sendResetOtp = async (req, res) => {
         return res.json({ success: false, message: 'Email is required!' });
     }
     try{
-        const user = await pool.query('SELECT * FROM cfgvault."USERS" WHERE email = $1', [email]);
+        const user = await pool.query('SELECT email FROM cfgvault."USERS" WHERE email = $1', [email]);
         
         if(user.rows[0].length === 0) {
             return res.json({ success: false, message: 'User not found!' });
@@ -204,7 +204,7 @@ export const resetPassword = async (req, res) => {
         return res.json({ success: false, message: 'All fields are required!' });
     }
     try{
-        const user = await pool.query('SELECT * FROM cfgvault."USERS" WHERE email = $1', [email]);
+        const user = await pool.query('SELECT "resetOtp", "resetOtpExpireAt" FROM cfgvault."USERS" WHERE email = $1', [email]);
 
         if(user.rows[0].length === 0) {
             return res.json({ success: false, message: 'User not found!' });

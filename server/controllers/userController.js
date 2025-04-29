@@ -3,9 +3,9 @@ import pool from '../config/db.js';
 export const getUserData = async(req, res) => {
     try{
         const {userId} = req.body;
-        const user = await pool.query('SELECT * FROM cfgvault."USERS" WHERE user_id = $1', [userId]);
+        const user = await pool.query('SELECT name, "isAccountVerified", email FROM cfgvault."USERS" WHERE user_id = $1', [userId]);
 
-        if(!user){
+        if(user.rows.length === 0){
             return res.json({success: false, message: "User not found"});
         }
 
