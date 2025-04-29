@@ -26,6 +26,7 @@
 <ul>
   <li>Postman – for developing and testing APIs</li>
   <li>Neon – for hosting the PostgreSQL database</li>
+  <li>Figma - for designing webpage layouts</li>
 </ul>
 
 ## 📅 Updates/Changelog
