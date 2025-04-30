@@ -132,7 +132,7 @@ export const verifyMail = async (req, res) => {
             return res.json({ success: false, message: 'All fields are required!' });
         }
 
-        const user = await pool.query('SELECT "verifyOtp", "verifyOtpExpireAt FROM cfgvault."USERS" WHERE user_id = $1', [userId]);
+        const user = await pool.query('SELECT "verifyOtp", "verifyOtpExpireAt" FROM cfgvault."USERS" WHERE user_id = $1', [userId]);
 
         if(user.rows[0].length === 0) {
             return res.json({ success: false, message: 'User not found!' });
