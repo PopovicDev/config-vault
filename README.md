@@ -39,4 +39,8 @@
 - Started the user authentication process
 
 ### 28.04.2025.
-- Finished all the APIs for User authentication, frontend still uncompleted
+- Finished all the APIs for User authentication
+
+### 30.04.2025.
+- Finished the frontend part for user authentication
+- Minor API fixes
