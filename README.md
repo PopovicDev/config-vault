@@ -8,7 +8,7 @@
 <p>Config Vault allows users to add friends and view their game configurations. With this feature, users can:</p>
 <ul>
   <li><b>🔜Send and accept friend requests</b> to connect with other players.</li>
-  <li><b>View anybody's profile and their saved game configurations</b> to compare and optimize settings.</li>
+  <li><b>🔜View anybody's profile and their saved game configurations</b> to compare and optimize settings.</li>
   <li><b>Easily manage their friend list</b>, including removing or blocking users if needed.</li>
 </ul>
 <p>This feature enhances the social aspect of Config Vault, making it easier to discover and share the best game setups.</p>
