@@ -7,8 +7,8 @@
 <h4>📀 Friends & shared configurations</h4>
 <p>Config Vault allows users to follow other users and view their game configurations. With this feature, users can:</p>
 <ul>
-  <li><b>🔜Follow other users</b> to connect and share their configs.</li>
-  <li><b>🔜View anybody's profile and their saved game configurations</b> to compare and optimize settings.</li>
+  <li><b>✔️Follow other users</b> to connect and share their configs.</li>
+  <li><b>✔️View anybody's profile and their saved game configurations</b> to compare and optimize settings.</li>
   <li><b>Easily manage their followers list</b>.</li>
 </ul>
 <p>This feature enhances the social aspect of Config Vault, making it easier to discover and share the best game setups.</p>
