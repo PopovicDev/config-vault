@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect} from 'react'
+import { createContext, useState, useEffect, useRef} from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify';
 
@@ -11,6 +11,9 @@ export function AppContextProvider({children}){
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const [loginstatus, setLoginStatus] = useState(false);
     const [userData, setUserData] = useState(false);
+    const [allUsers, setAllUsers] = useState(false);
+    const [searchMenu, setSearchMenu] = useState(false);
+    const searchMenuRef = useRef(null);
 
     const getAuthState = async () => {
         try{
@@ -35,6 +38,16 @@ export function AppContextProvider({children}){
         }
     }
 
+    const getAllUsers = async () => {
+        try {
+            const {data} = await axios.get(backendUrl + '/api/user/all-users');
+            data.success ? setAllUsers(data.users) : toast.error(data.message);
+        }
+        catch(error){
+            toast.error(error.message);
+        }
+    }
+
     useEffect(() => {
         getAuthState();
     }, []);
@@ -43,7 +56,11 @@ export function AppContextProvider({children}){
         backendUrl,
         loginstatus, setLoginStatus,
         userData, setUserData,
-        getUserData,
+        getUserData, 
+        allUsers,
+        getAllUsers,
+        searchMenuRef,
+        searchMenu, setSearchMenu,
     }
 
     return (

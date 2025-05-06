@@ -7,6 +7,7 @@ import Register from './pages/Register.jsx'
 import Login from './pages/Login.jsx'
 import ForgotPassword from './pages/ForgotPassword.jsx'
 import EmailVerify from './pages/EmailVerify.jsx'
+import Profile from './pages/Profile.jsx'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -19,6 +20,7 @@ function App(){
                 <Route index element={<Homepage/>}/>
                 <Route path='games' element={<Games />}/>
                 <Route path='saved' element={<Saved />}/>
+                <Route path='/profile/:username' element={<Profile/>}/>
             </Route>
             <Route path='/register' element={<Register/>}/>
             <Route path='/login' element={<Login/>}/>

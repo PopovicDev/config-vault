@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 function Sidebar({setBurgerChecked}){
     const navigate = useNavigate();
-    const { loginstatus, backendUrl, setLoginStatus, setUserData } = useContext(AppContent);
+    const { loginstatus, backendUrl, setLoginStatus, userData, setUserData, setSearchMenu, searchMenuRef } = useContext(AppContent);
 
     const logout = async () => {
       try{
@@ -37,12 +37,26 @@ function Sidebar({setBurgerChecked}){
           )}
         </ul>
         <div className='sidebar-friends'>
-          <h3><i className="fa-solid fa-user-group"></i> Friends</h3>
-          <button aria-label='Add friend'>
+          <h3><i className="fa-solid fa-user-group"></i> Following</h3>
+          <button aria-label='Follow' onClick={()=>{setBurgerChecked(false); setSearchMenu(true); searchMenuRef.current.focus();}}>
             <i className="fa-solid fa-plus"></i>
           </button>
         </div>
-        {!loginstatus ? <p>If you want to add friends, you'll need to log in!</p> : <ul></ul>}
+        {!loginstatus ? <p>If you want to follow somebody, you'll need to log in!</p> : <ul>
+          {userData.followers ? userData.followers.map((user, index)=>{
+            return (
+              <li key={index} onClick={()=>{setBurgerChecked(false); navigate('/profile/' + user.username); window.scrollTo({top: 0, behavior: 'smooth'});}}>
+                <div className='sidebar-friend-pic'>
+                  <h1>{user.username ? user.username[0] : ''}</h1>
+                </div>
+                <div className='sidebar-friend-info'>
+                  <p>{user.username}</p>
+                </div>
+              </li>
+            )
+          }) : ''}
+          {}
+        </ul>}
         {loginstatus ? <button className='sidebar-login' aria-label='Log out' onClick={()=>logout()}><i className="fa-solid fa-plug-circle-xmark"></i> LOG OUT</button> : <button className='sidebar-login' aria-label='Login' onClick={()=>{setBurgerChecked(false); navigate('/login')}}><i className="fa-solid fa-right-to-bracket"></i> LOG IN</button>}
       </div>
     )

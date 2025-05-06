@@ -1,0 +1,129 @@
+.profile-info{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    text-align: center;
+    gap:30px;
+    padding:15px;
+    margin-bottom:30px;
+    color:var(--text-color);
+}
+
+.profile-m-info{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-m-info button{
+    margin-top:20px;
+}
+
+.profile-pic{
+    background-color: var(--primary-color);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius:50%;
+    border: 3px solid var(--secondary-color-dark1);
+}
+
+.profile-m-info h1{
+    font-size:clamp(2rem, 6vw, 3.5rem);
+}
+
+.profile-m-info h4{
+    color:var(--secondary-color);
+    font-size:clamp(1rem, 4vw, 1.35rem);
+}
+
+.profile-o-info h1{
+    font-size:clamp(1rem, 6vw, 2.5rem);
+}
+
+.profile-o-info h4{
+    font-size:clamp(0.8rem, 4vw, 1.5rem);
+}
+
+.profile-page hr{
+    width:100%;
+    height:3px;
+    background-color:var(--secondary-color-dark1);
+    border:none;
+}
+
+/*MEDIA QUERIES*/
+@media only screen and (min-width:400px){
+    .profile-info{
+        text-align: unset;
+    }
+
+    .profile-o-info{
+        display:flex;
+        justify-content: center;
+        gap:30px;
+    }
+}
+
+@media only screen and (min-width:768px){
+    .profile-info{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .profile-m-info{
+        align-items: unset;
+        text-align: unset;
+    }
+
+    .profile-o-info{
+        display:flex;
+        flex-direction: column;
+        gap:5px;
+    }
+}
+
+@media only screen and (min-width:1024px){
+    .profile-info{
+        justify-content: space-between;
+    }
+
+    .profile-m-info{
+        display:flex;
+        flex-direction: row;
+        gap:20px;
+    }
+
+    .profile-pic{
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media only screen and (min-width:1280px){
+    .profile-info{
+        justify-content: left;
+        gap:50px;
+    }
+
+    .profile-pic{
+        min-width: 200px;
+        min-height: 200px;
+    }
+
+    .profile-o-info{
+        flex-direction: row;
+        gap:30px;
+    }
+}
+
+@media only screen and (min-width:1440px){
+    .profile-o-info{
+        padding-left:100px;
+    }
+}

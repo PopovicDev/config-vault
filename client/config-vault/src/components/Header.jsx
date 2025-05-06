@@ -1,12 +1,14 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import AppContent from '../context/AppContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 function Header(){
-    const { loginstatus, userData, backendUrl, setLoginStatus, setUserData } = useContext(AppContent);
+    const { loginstatus, userData, backendUrl, setLoginStatus, setUserData, allUsers, getAllUsers, searchMenu, setSearchMenu, searchMenuRef } = useContext(AppContent);
     const [userInfo, setUserInfo] = useState(false);
+    const [searchList, setSearchList] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
     const navigate = useNavigate();
 
     const logout = async () => {
@@ -41,13 +43,36 @@ function Header(){
       }
     }
 
+    const handleSearchMenu = () => {
+      setSearchList(allUsers.filter(user => user.username.toLowerCase().includes(searchValue.toLowerCase())));
+    }
+
+    useEffect(() => {
+      if(loginstatus){
+        getAllUsers();
+      }
+    }, [loginstatus])
+
     return (
       <div className='header section' style={{justifyContent: (!loginstatus && window.innerWidth > 600) ? 'flex-end' : 'space-between'}}>
         <div className='header-inputs'>
           <label htmlFor='burger-menu'><i className="fa-solid fa-bars bg-menu"/></label>
           {loginstatus && (
             <div className='search-bar'>
-              <input type='text' placeholder='Search for friends...'/>
+              <input type='text' placeholder='Search for friends...' onInput={()=>setSearchMenu(true)} onBlur={()=> setTimeout(()=>{setSearchMenu(false)},100)} onChange={(e)=>{setSearchValue(e.target.value)}} value={searchValue} onKeyDown={()=>handleSearchMenu()} ref={searchMenuRef}/>
+              {searchMenu && searchList.length !== 0 && (
+                <div className='search-menu'>
+                  <ul>
+                    {allUsers && searchList.map((user, index) => {
+                      return (
+                        <li key={index} onClick={()=>{setSearchMenu(false); navigate('/profile/' + user.username); setSearchList([]); setSearchValue('')}}>
+                          <h4>{user.username}</h4>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -58,7 +83,7 @@ function Header(){
             {userData && (
               <>
               <div className='user-profile'>
-                <div className='user-profile-pic' onClick={()=>setUserInfo(!userInfo)}>
+                <div className='user-profile-pic' onClick={()=>{setUserInfo(!userInfo); navigate('/profile/' + userData.username)}}>
                   <h1>{userData.name[0]}</h1>
                 </div>
                 {userInfo && (
@@ -73,9 +98,9 @@ function Header(){
                 <div className='user-funcs-dropdown'>
                   <ul>
                     {!userData.isAccountVerified && <li onClick={()=>sendVerificationOtp()}>Verify mail</li>}
+                    <li onClick={()=>navigate('/profile/' + userData.username)}>View profile</li>
                     <li onClick={()=>logout()}>Logout</li>
                   </ul>
-
                 </div>
               </div>
               </>
