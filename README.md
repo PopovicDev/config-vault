@@ -51,3 +51,8 @@
 ### 30.04.2025.
 - Finished the frontend part for user authentication
 - Minor API fixes
+
+### 06.05.2025.
+- Finished viewing profiles functionality
+- Follow functionality completed
+- User finder search bar in header finished
