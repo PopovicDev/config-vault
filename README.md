@@ -4,7 +4,7 @@
 ## Features - NOT FINISHED
 <h4>✔️ User authentication (register & login) - [FINISHED]</h4>
 <p>Config Vault provides a secure authentication system, allowing users to create an account and access their saved game configurations.</p>
-<h4>✔️ Friends & shared configurations - [FINISHED]</h4>
+<h4>✔️ Following system & shared configurations - [FINISHED]</h4>
 <p>Config Vault allows users to follow other users and view their game configurations. With this feature, users can:</p>
 <ul>
   <li><b>Follow other users</b> to connect and share their configs.</li>
