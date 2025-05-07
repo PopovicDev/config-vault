@@ -43,7 +43,6 @@
 - Separated CSS in more files
 - Implemented routing using React Router
 - Connected backend with PostgreSQL via Neon
-- Started the user authentication process
 
 ### 28.04.2025.
 - Finished all the APIs for User authentication
