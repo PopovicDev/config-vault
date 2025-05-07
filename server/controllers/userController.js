@@ -4,7 +4,7 @@ export const getUserData = async(req, res) => {
     try{
         const {userId} = req.body;
         const user = await pool.query('SELECT name, surname, username, "isAccountVerified", email FROM cfgvault."USERS" WHERE user_id = $1', [userId]);
-        const followers = await pool.query('SELECT f.follower_id, u.username FROM cfgvault."FOLLOWERS" f JOIN cfgvault."USERS" u ON f.follower_id = u.user_id WHERE f.user_id = $1', [userId]);
+        const followers = await pool.query('SELECT f.follower_id, u.name, u.surname, u.username FROM cfgvault."FOLLOWERS" f JOIN cfgvault."USERS" u ON f.follower_id = u.user_id WHERE f.user_id = $1', [userId]);
 
         if(user.rows.length === 0){
             return res.json({success: false, message: "User not found"});

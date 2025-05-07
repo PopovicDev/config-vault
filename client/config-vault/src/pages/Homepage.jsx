@@ -5,7 +5,7 @@ import AppContent from '../context/AppContext.jsx';
 import '../css/homepage.css';
 
 function Homepage(){
-  const { loginstatus } = useContext(AppContent);
+  const { loginstatus, userData } = useContext(AppContent);
   return (
     <div className='cfg-section'>
             <div className='cfg-box1'>
@@ -25,7 +25,11 @@ function Homepage(){
                 <p>Game description</p>
               </div>
             </div>
-            <h4>Check out your friend's configurations <i className="fa-solid fa-chevron-down"></i></h4>
+            {userData.followers && userData.followers.length !== 0 ? (
+              <>
+                <h4>Check out your friend's configurations <i className="fa-solid fa-chevron-down"></i></h4>
+              </>
+            ) : <h4>You aren't following anyone yet, follow somebody and see their configs! </h4>}
             <FriendList loginstatus={loginstatus}/>
           </div>
   )

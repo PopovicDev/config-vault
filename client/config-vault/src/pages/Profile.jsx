@@ -7,7 +7,7 @@ import '../css/profile.css'
 
 function Profile({likes="0"}) {
     const { username } = useParams();
-    const { backendUrl, userData } = useContext(AppContent);
+    const { backendUrl, userData, getUserData } = useContext(AppContent);
     const [userProfile, setUserProfile] = useState(false);
     
     const getUserProfile = async () => {
@@ -23,7 +23,13 @@ function Profile({likes="0"}) {
     const addFollower = async () => {
         try{
             const {data} = await axios.post(backendUrl + '/api/user/addFollower', {followerId: userProfile.userId});
-            data.success ? getUserProfile() : toast.error(data.message);
+            if(data.success){
+                getUserProfile();
+                getUserData();
+            }
+            else{
+                toast.error(data.message);
+            }
         }
         catch(error){
             toast.error(error.message);
@@ -33,7 +39,13 @@ function Profile({likes="0"}) {
     const removeFollower = async () => {
         try{
             const {data} = await axios.post(backendUrl + '/api/user/removeFollower', {followerId: userProfile.userId});
-            data.success ? getUserProfile() : toast.error(data.message);
+            if(data.success){
+                getUserProfile();
+                getUserData();
+            }
+            else{
+                toast.error(data.message);
+            }
         }
         catch(error){
             toast.error(error.message);
@@ -77,6 +89,7 @@ function Profile({likes="0"}) {
                 </div>
             </div>
             <hr/>
+            <h4>This user still has no configurations.</h4>
         </div>
     );
 }

@@ -54,6 +54,11 @@
     height:3px;
     background-color:var(--secondary-color-dark1);
     border:none;
+    margin:20px 0;
+}
+
+.profile-page > h4{
+    color:var(--text-color-dark1);
 }
 
 /*MEDIA QUERIES*/
@@ -85,6 +90,10 @@
         display:flex;
         flex-direction: column;
         gap:5px;
+    }
+
+    .profile-page > h4{
+        font-size:1.5rem;
     }
 }
 

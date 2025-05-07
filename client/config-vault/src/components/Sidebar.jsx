@@ -42,21 +42,19 @@ function Sidebar({setBurgerChecked}){
             <i className="fa-solid fa-plus"></i>
           </button>
         </div>
-        {!loginstatus ? <p>If you want to follow somebody, you'll need to log in!</p> : <ul>
-          {userData.followers ? userData.followers.map((user, index)=>{
+        {!loginstatus ? <p>If you want to follow somebody, you'll need to log in!</p> : <>
+          {userData.followers && userData.followers.length !== 0 ? <ul className='followers-list'>{userData.followers.map((user, index)=>{
             return (
               <li key={index} onClick={()=>{setBurgerChecked(false); navigate('/profile/' + user.username); window.scrollTo({top: 0, behavior: 'smooth'});}}>
                 <div className='sidebar-friend-pic'>
-                  <h1>{user.username ? user.username[0] : ''}</h1>
+                  <h1>{user.username ? user.username[0].toUpperCase() : ''}</h1>
                 </div>
                 <div className='sidebar-friend-info'>
                   <p>{user.username}</p>
                 </div>
               </li>
             )
-          }) : ''}
-          {}
-        </ul>}
+          })}</ul> : <p>You aren't following anyone yet!</p>}</>}
         {loginstatus ? <button className='sidebar-login' aria-label='Log out' onClick={()=>logout()}><i className="fa-solid fa-plug-circle-xmark"></i> LOG OUT</button> : <button className='sidebar-login' aria-label='Login' onClick={()=>{setBurgerChecked(false); navigate('/login')}}><i className="fa-solid fa-right-to-bracket"></i> LOG IN</button>}
       </div>
     )
