@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 function Sidebar({setBurgerChecked}){
     const navigate = useNavigate();
-    const { loginstatus, backendUrl, setLoginStatus, userData, setUserData, setSearchMenu, searchMenuRef } = useContext(AppContent);
+    const { loginstatus, backendUrl, setLoginStatus, userData, setUserData, setSearchMenu, searchMenuRef,  setConfigAdd} = useContext(AppContent);
 
     const logout = async () => {
       try{
@@ -31,8 +31,8 @@ function Sidebar({setBurgerChecked}){
           {loginstatus && (
             <>
               <li onClick={()=>{setBurgerChecked(false); navigate('/games')}}><i className="fa-solid fa-gamepad"></i> Games</li>
-              <li onClick={()=>{setBurgerChecked(false); navigate('/saved')}}><i className="fa-solid fa-list-check"></i> Saved Settings</li>
-              <li><i className="fa-solid fa-plus"></i> Add Settings</li>
+              <li onClick={()=>{setBurgerChecked(false); navigate('/saved')}}><i className="fa-solid fa-list-check"></i> Saved Configs</li>
+              <li onClick={()=>{setBurgerChecked(false); setConfigAdd(true)}}><i className="fa-solid fa-plus"></i> Add Config</li>
               </>
           )}
         </ul>

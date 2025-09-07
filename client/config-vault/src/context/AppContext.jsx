@@ -13,6 +13,17 @@ export function AppContextProvider({children}){
     const [userData, setUserData] = useState(false);
     const [allUsers, setAllUsers] = useState(false);
     const [searchMenu, setSearchMenu] = useState(false);
+    const [configAdd, setConfigAdd] = useState(false);
+    const [allGames, setAllGames] = useState(false);
+    const [allConfigs, setAllConfigs] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [currentGame, setCurrentGame] = useState('');
+    const [configPreset, setConfigPreset] = useState('');
+    const [configName, setConfigName] = useState('');
+    const [configStatus, setConfigStatus] = useState('private');
+    const [configEdit, setConfigEdit] = useState(false);
+    const [configId, setConfigId] = useState('');
+    const [showCfg, setShowCfg] = useState(false);
     const searchMenuRef = useRef(null);
 
     const getAuthState = async () => {
@@ -48,6 +59,36 @@ export function AppContextProvider({children}){
         }
     }
 
+    const getAllGames = async () => {
+        try{
+            const {data} = await axios.get(backendUrl + '/api/user/all-games');
+            if(data.success){
+                setAllGames(data.games);
+            }
+            else {
+                toast.error(data.message);
+            }
+        }
+        catch(error){
+            toast.error(error.message);
+        }
+    }
+
+    const getOwnConfigs = async () => {
+        try{
+            const {data} = await axios.get(backendUrl + '/api/user/getOwnConfigs');
+            if(data.success){
+                setAllConfigs(data.configs);
+            }
+            else {
+                toast.error(data.message);
+            }
+        }
+        catch(error){
+            toast.error(error.message);
+        }
+    }
+
     useEffect(() => {
         getAuthState();
     }, []);
@@ -61,6 +102,19 @@ export function AppContextProvider({children}){
         getAllUsers,
         searchMenuRef,
         searchMenu, setSearchMenu,
+        configAdd, setConfigAdd,
+        allGames, setAllGames,
+        getAllGames,
+        allConfigs, setAllConfigs,
+        getOwnConfigs,
+        currentPage, setCurrentPage,
+        currentGame, setCurrentGame,
+        configPreset, setConfigPreset,
+        configName, setConfigName,
+        configStatus, setConfigStatus,
+        configEdit, setConfigEdit,
+        configId, setConfigId,
+        showCfg, setShowCfg
     }
 
     return (

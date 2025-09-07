@@ -54,9 +54,6 @@ button{
     transition:transform 0.2s;
 }
 
-button:hover {
-    background-color: var(--primary-color-light);
-}
 
 li{
     cursor:pointer;
@@ -102,6 +99,7 @@ i{
 .login:hover{
     box-shadow: 0 0 20px var(--primary-color-dark1), 0 0 40px var(--primary-color-dark2);
     transform: scale(1.01);
+    background-color: var(--primary-color-light);
 }
 
 .bg-menu{
@@ -339,9 +337,9 @@ i{
     row-gap:30px;
     opacity:0;
     transition:top 300ms, opacity 300ms;
-    z-index:1;
+    z-index:9999;
     border: 2px solid var(--border-color);
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(20px);
 }
 
 .sidebar h3{
@@ -354,6 +352,9 @@ i{
 }
 
 .sidebar li{
+    display:flex;
+    align-items: center;
+    gap:5px;
     list-style-type:none;
     padding:15px 0;
     color:var(--text-color);
@@ -404,6 +405,7 @@ i{
 .sidebar-login:hover{
     box-shadow: 0 0 20px var(--primary-color-dark1), 0 0 40px var(--primary-color-dark2);
     transform: scale(1.01);
+    background-color: var(--primary-color-light);
 }
 
 
@@ -494,7 +496,6 @@ i{
     .followers-list::-webkit-scrollbar{
         display:none;
     }
-
 }
 
 @media only screen and (min-width:600px){

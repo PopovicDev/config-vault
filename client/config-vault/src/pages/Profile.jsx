@@ -4,11 +4,14 @@ import AppContent from '../context/AppContext.jsx';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import '../css/profile.css'
+import Config from '../components/Config.jsx';
 
-function Profile({likes="0"}) {
+function Profile() {
     const { username } = useParams();
     const { backendUrl, userData, getUserData } = useContext(AppContent);
     const [userProfile, setUserProfile] = useState(false);
+    const [profileConfigs, setProfileConfigs] = useState('');
+    const [buttonsStatus, setButtonsStatus] = useState(false);
     
     const getUserProfile = async () => {
         try{
@@ -52,9 +55,29 @@ function Profile({likes="0"}) {
         }
     }
 
+    const getConfigs = async () => {
+        try{
+            const {data} = await axios.post(backendUrl + '/api/user/getConfigs/', {username: username});
+            if(data.success){
+                setProfileConfigs(data.configs);
+                setButtonsStatus(data.buttons);
+            }
+            else{
+                toast.error(data.message);
+            }
+        }
+        catch(error){
+            toast.error(error.message);
+        }
+    }
+
     useEffect(() => {
         getUserProfile();
     }, [username]);
+
+    useEffect(() => {
+        getConfigs();
+    }, [username, profileConfigs]);
     
     return (
         <div className='profile-page'>
@@ -84,12 +107,17 @@ function Profile({likes="0"}) {
                     </div>
                     <div>
                         <h4>Likes</h4>
-                        <h1>{likes}</h1>
+                        <h1>{userProfile.likes}</h1>
                     </div>
                 </div>
             </div>
             <hr/>
-            <h4>This user still has no configurations.</h4>
+            <h4>{profileConfigs ? 'These are ' + username + ' configurations:' : 'This user still has no configurations.'}</h4>
+            <div className='configz'>
+                  {profileConfigs && profileConfigs.map((config, index) => (
+                    <Config key={index} game_name={config.game_name} name={config.config_name} config_preset={config.settings} config_status={config.visibility} id={config.config_id} buttonsStatus={buttonsStatus}/>
+                  ))}
+            </div>
         </div>
     );
 }

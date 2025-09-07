@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 function Header(){
-    const { loginstatus, userData, backendUrl, setLoginStatus, setUserData, allUsers, getAllUsers, searchMenu, setSearchMenu, searchMenuRef } = useContext(AppContent);
+    const { loginstatus, userData, backendUrl, setLoginStatus, setUserData, allUsers, getAllUsers, searchMenu, setSearchMenu, searchMenuRef} = useContext(AppContent);
     const [userInfo, setUserInfo] = useState(false);
     const [searchList, setSearchList] = useState([]);
     const [searchValue, setSearchValue] = useState('');
@@ -51,7 +51,16 @@ function Header(){
       if(loginstatus){
         getAllUsers();
       }
-    }, [loginstatus])
+    }, [loginstatus]);
+
+    useEffect(() => {
+        if(searchValue === ''){
+            setSearchList([]);
+        }
+        else {
+            setSearchList(allUsers.filter(user => user.username.toLowerCase().includes(searchValue.toLowerCase())));
+        }
+    }, [searchValue])
 
     return (
       <div className='header section' style={{justifyContent: (!loginstatus && window.innerWidth > 600) ? 'flex-end' : 'space-between'}}>
@@ -59,7 +68,7 @@ function Header(){
           <label htmlFor='burger-menu'><i className="fa-solid fa-bars bg-menu"/></label>
           {loginstatus && (
             <div className='search-bar'>
-              <input type='text' placeholder='Search for friends...' onInput={()=>setSearchMenu(true)} onBlur={()=> setTimeout(()=>{setSearchMenu(false)},100)} onChange={(e)=>{setSearchValue(e.target.value)}} value={searchValue} onKeyDown={()=>handleSearchMenu()} ref={searchMenuRef}/>
+              <input type='text' placeholder='Search for friends...' onChange={(e)=>{setSearchMenu(true); setSearchValue(e.target.value)}} onBlur={()=> setTimeout(()=>{setSearchMenu(false)},100)} onKeyDown={()=>handleSearchMenu()} value={searchValue} ref={searchMenuRef}/>
               {searchMenu && searchList.length !== 0 && (
                 <div className='search-menu'>
                   <ul>

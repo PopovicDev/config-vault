@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import Friend from '../components/Friend.jsx';
 import AppContent from '../context/AppContext.jsx';
 
-function FriendList({img = "", name = "Friend name"}){
+function FriendList(){
     const { loginstatus, userData } = useContext(AppContent);
     return (
       <div className='friends-desk'>

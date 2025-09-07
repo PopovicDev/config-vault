@@ -1,0 +1,382 @@
+.add-config-section{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    position:absolute;
+    height:90%;
+    width:90%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index:2;
+    border-radius:5px;
+    overflow:hidden;
+}
+
+.add-config-close{
+    position:absolute;
+    top:10px;
+    right:10px;
+    height:40px;
+    width:40px;
+    border-radius:5px;
+    font-size:1rem;
+}
+
+.add-config-title{
+    position:absolute;
+    text-align: center;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:clamp(1.5rem, 5vw, 3rem);
+    color:var(--secondary-color);
+}
+
+.add-config-undertitle{
+    position:absolute;
+    text-align: center;
+    top:65px;
+    font-size:clamp(1rem, 5vw, 1.75rem);
+    color:var(--secondary-color-dark1);
+}
+
+.add-config-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width:95%;
+    height:80%;
+}
+
+.add-config-selectgame{
+    display:flex;
+    gap:50px;
+    width:50%;
+    height:400px;
+    color:#fff;
+}
+
+.selectgame-left{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    width:40%;
+}
+
+.selectgame-right{
+    background-color: var(--background-color);
+    width:50%;
+    height:400px;
+    border-radius:5px;
+    border-top:2px solid var(--secondary-color-dark1);
+}
+
+.selectgame-right div{
+    background-color:var(--background-color-light);
+    width:100%;
+    padding:10px 20px;
+    border-bottom:2px solid var(--secondary-color-dark1);
+    cursor:pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.selectgame-right div:hover{
+    background-color: var(--primary-color);
+}
+
+.selectgame-left div{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.selectgame-left-top input{
+    width:100%;
+    padding:15px 20px;
+    outline:none;
+    border:2px solid transparent;
+    border-radius:5px;
+    transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.selectgame-left-top input:focus-within{
+    border:2px solid var(--secondary-color-dark1);
+    box-shadow:0 0 10px var(--secondary-color);
+}
+
+.selectgame-left-bottom button{
+    width:100%;
+    position:relative;
+}
+
+.selectgame-left-bottom button.active::after{
+    content:'The game has not been chosen yet.';
+    position: absolute;
+    bottom:-40px;
+    left:0;
+    color:var(--decoration-color);
+}
+
+.selectgame-left-bottom span{
+    color:var(--secondary-color);
+}
+
+.add-config-edit{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    width: 100%;
+    margin-top: 100px;
+    border-radius: 5px;
+    height: 95%;
+    align-items: stretch;
+}
+
+.config-menu::-webkit-scrollbar{
+    width: 8px;
+}
+
+.config-menu::-webkit-scrollbar-track{
+    background: var(--background-color-light);
+    border-radius:5px;
+}
+
+.config-menu::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius:5px;
+}
+
+.config-menu::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color-light);
+}
+
+.config-menu{
+    display:flex;
+    flex-direction: column;
+    height:auto;
+    width:100%;
+    background-color:var(--background-color);
+    padding:10px;
+    font-weight:700;
+    overflow-x:hidden;
+}
+
+.config-menu > h3{
+    color:var(--text-color);
+    font-size:2rem;
+}
+
+.config-submenu{
+    display:flex;
+    width:100%;
+    flex-direction: column;
+    margin:10px 0;
+}
+
+.config-submenu h3{
+    color:var(--text-color-dark1);
+}
+
+.config-property{
+    display:flex;
+    width:100%;
+    justify-content: space-between;
+    align-items: center;
+    gap:10px;
+    color:var(--secondary-color-dark1);
+    margin:5px 0;
+}
+
+.config-property label{
+    width:50%;
+    word-break:break-word;
+}
+
+:is(.config-property input, .config-property select){
+    width:50%;
+    padding:5px 10px;
+    border:1px solid var(--border-color);
+    background-color: var(--background-color-light);
+    color:var(--text-color);
+    outline:none;
+}
+
+.config-property input::placeholder{
+    color: var(--text-color-dark1);
+}
+
+.add-config-menu{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    height:100%;
+    width:100%;
+    gap:20px;
+    padding-top:10px;
+}
+
+.add-config-name{
+    display:flex;
+    align-items: center;
+    gap:10px;
+    color:var(--primary-color-dark1)
+}
+
+.add-config-name input{
+    padding:5px 10px 5px 2px;
+    background-color: transparent;
+    outline:none;
+    border:none;
+    border-bottom:2px solid var(--secondary-color-dark1);
+    color:var(--text-color);
+    transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.add-config-name input:focus-within{
+    border-bottom:2px solid var(--secondary-color);
+    box-shadow:0 1px 0px var(--secondary-color);
+}
+
+.add-config-buttons{
+    display:flex;
+    position: relative;
+    height:100%;
+    gap:5px;
+}
+
+.add-config-menu button{
+    height:100%;
+}
+
+.add-config-save{
+    padding:10px 20px;
+    background-color: var(--secondary-color-dark1);
+    color: var(--background-color-light);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.add-config-save:hover{
+    background-color: var(--secondary-color);
+    color:var(--background-color);
+}
+
+.add-config-buttons button{
+    padding:10px 20px;
+    color:var(--text-color);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+
+/*MEDIA QUERIES*/
+@media only screen and (max-width: 600px){
+    .add-config-selectgame{
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .selectgame-left{
+        width:90%;
+    }
+
+    .selectgame-right{
+        width:90%;
+        height:auto;
+        max-height:300px;
+    }
+
+    .selectgame-left-bottom{
+        padding-top:30px;
+    }
+
+    .config-menu{
+        height:auto;
+        overflow-x:unset;
+    }
+}
+
+@media only screen and (min-width:600px){
+    .add-config-selectgame{
+        width:90%;
+    }
+
+    .selectgame-left{
+        width:40%;
+    }
+
+    .selectgame-right{
+        width:50%;
+    }
+}
+
+@media only screen and (max-width:682px){
+    .add-config-section{
+        flex-direction: column;
+        height:100%;
+        width:100%;
+    }
+
+    .add-config-undertitle{
+        position:unset;
+        transform:unset;
+        top:unset;
+        left:unset;
+        margin-top:50px;
+        margin-bottom:5px;
+        z-index:1;
+    }
+
+    .add-config-container{
+        height:90%;
+    }
+
+    .add-config-edit {
+        overflow-x:hidden;
+        margin:0;
+        height:70%;
+    }
+    
+    .add-config-menu{
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;;
+        height:30%;
+        gap:5px;
+        padding-top:10px;
+    }
+
+    .add-config-menu button{
+        height:50px;
+    }
+
+    .add-config-buttons{
+        height:auto;
+    }
+}
+
+@media only screen and (min-width:1024px){
+    .add-config-selectgame{
+        width:70%;
+    }
+
+    .selectgame-left{
+        width:40%;
+    }
+
+    .selectgame-right{
+        width:60%;
+    }
+}
+
+@media only screen and (min-width:1200px){
+    .add-config-selectgame{
+        width:60%;
+    }
+}
+
+@media only screen and (min-width:1440px){
+    .add-config-selectgame{
+        width:50%;
+    }
+}

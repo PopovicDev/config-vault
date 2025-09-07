@@ -59,6 +59,31 @@
 
 .profile-page > h4{
     color:var(--text-color-dark1);
+    margin-bottom:20px;
+}
+
+.configz{
+    display:grid;
+    gap:10px;
+    grid-template-columns: repeat(auto-fit, 400px);
+    align-items: stretch;
+}
+
+.config{
+    background-color: var(--background-color-light);
+    padding:5px 10px;
+    border-radius:5px;
+    max-width:400px;
+}
+
+.configz img{
+    height:75px;
+    width:75px;
+    border-radius:5px;
+}
+
+.config h3{
+    word-break:break-all;
 }
 
 /*MEDIA QUERIES*/
@@ -71,6 +96,18 @@
         display:flex;
         justify-content: center;
         gap:30px;
+    }
+}
+
+@media only screen and (max-width:420px){
+    .configz{
+        grid-template-columns: repeat(auto-fit, 300px);
+    }
+}
+
+@media only screen and (min-width:600px) and (max-width:700px){
+    .configz{
+        grid-template-columns: repeat(auto-fit, 350px);
     }
 }
 

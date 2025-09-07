@@ -70,16 +70,25 @@
 
 .configs{
     display:flex;
+    width:100%;
     flex-direction: column;
     gap:10px;
 }
 
 .config{
     display:flex;
+    width:100%;
     align-items: center;
     column-gap:20px;
     font-size:1.15rem;
     color:var(--text-color);
+    justify-content: space-between;
+}
+
+.config-info{
+    display:flex;
+    gap:10px;
+    align-items: center;
 }
 
 .config i{
@@ -158,6 +167,19 @@
 
 .config i:hover{
     color:var(--decoration-color);
+}
+
+.config-buttons{
+    display:flex;
+    gap:15px;
+}
+
+.cfgs > div{
+    background: #17172bb3;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(94, 23, 235, 0.3);
 }
 
 @media (hover: none) {
@@ -296,7 +318,7 @@
     }
 
     .config i{
-        font-size:2rem;
+        font-size:1.5rem;
     }
 }
 
