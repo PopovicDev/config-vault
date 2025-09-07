@@ -12,7 +12,7 @@
   <li><b>Easily manage their followers list</b>.</li>
 </ul>
 <p>This feature enhances the social aspect of Config Vault, making it easier to discover and share the best game setups.</p>
-<h4>📀 Add configurations to your profile</h4>
+<h4>✔️ Add configurations to your profile</h4>
 <p>Users can easily add their config just by choosing the game they want, select the settings and save it.. - just like that!</p>
 <ul>
   <li>Choose whatever game you want, select specific settings, add custom text if needed.</li>
