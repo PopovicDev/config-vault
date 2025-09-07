@@ -55,3 +55,7 @@
 - Finished viewing profiles functionality
 - Follow functionality completed
 - User finder search bar in header finished
+
+### 09.07.2025.
+- Add/edit/delete && privatize/public your configurations
+- See other user's publicized configurations
