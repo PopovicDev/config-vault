@@ -19,6 +19,11 @@
   <li>Give a specific name for the config, edit it whenever you want.</li>
   <li>Decide if you want to make your configs private/public to other ConfigVault users!</li>
 </ul>
+<h4>✔️ Reputation system (like/unlike) - [FINISHED]</h4>
+<ul>
+  <li>Users can like/unlike other people's configurations. </li>
+  <li>A simple voting mechanism that lets the community decide which configurations are the most valuable! </li>
+</ul>
 <h4>📀 Large amount of game configurations</h4>
 <p>We'll give our best to add as much many games to the project, so you can save any game configuration! (All the popular games will be added)</p>
 
@@ -59,3 +64,8 @@
 ### 09.07.2025.
 - Add/edit/delete && privatize/public your configurations
 - See other user's publicized configurations
+
+### 12.07.2025.
+- Like/unlike other's configurations
+- Added configuration like count
+- Added profile all configurations combined like count
