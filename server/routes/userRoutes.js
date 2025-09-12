@@ -1,6 +1,6 @@
 import express from 'express';
 import userAuth from '../middleware/userAuth.js';
-import { getUserData, getUserProfile, getAllUsers, addFollower, removeFollower, getAllGames, getConfigPreset, saveConfig, getOwnConfigs, editConfig, deleteConfig, getConfigs, showConfig } from '../controllers/userController.js';
+import { getUserData, getUserProfile, getAllUsers, addFollower, removeFollower, getAllGames, getConfigPreset, saveConfig, getOwnConfigs, editConfig, deleteConfig, getConfigs, showConfig, likeConfig, unlikeConfig, checkLikes } from '../controllers/userController.js';
 
 const userRouter = express.Router();
 
@@ -17,5 +17,8 @@ userRouter.post('/editconfig', userAuth, editConfig);
 userRouter.post('/deleteconfig', userAuth, deleteConfig);
 userRouter.post('/getConfigs', userAuth, getConfigs);
 userRouter.post('/showConfig', userAuth, showConfig);
+userRouter.post('/likeConfig', userAuth, likeConfig);
+userRouter.post('/unlikeConfig', userAuth, unlikeConfig);
+userRouter.post('/checkLikes', userAuth, checkLikes);
 
 export default userRouter;

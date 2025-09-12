@@ -7,7 +7,7 @@ function Games(){
     const { loginstatus } = useContext(AppContent);
     return (
         <div className='games-section section'>
-            <h1>Your games</h1>
+            <h1>Games</h1>
             <div className='games'>
               {!loginstatus && (
                 <>

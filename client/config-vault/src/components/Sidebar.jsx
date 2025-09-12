@@ -31,8 +31,8 @@ function Sidebar({setBurgerChecked}){
           {loginstatus && (
             <>
               <li onClick={()=>{setBurgerChecked(false); navigate('/games')}}><i className="fa-solid fa-gamepad"></i> Games</li>
-              <li onClick={()=>{setBurgerChecked(false); navigate('/saved')}}><i className="fa-solid fa-list-check"></i> Saved Configs</li>
-              <li onClick={()=>{setBurgerChecked(false); setConfigAdd(true)}}><i className="fa-solid fa-plus"></i> Add Config</li>
+              <li onClick={()=>{setBurgerChecked(false); navigate('/liked-configurations')}}><i className="fa-solid fa-list-check"></i> Liked Configurations</li>
+              <li onClick={()=>{setBurgerChecked(false); setConfigAdd(true)}}><i className="fa-solid fa-plus"></i> Add Configuration</li>
               </>
           )}
         </ul>

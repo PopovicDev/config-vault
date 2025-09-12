@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import '../css/addConfig.css';
 
 function AddConfig() {
-    const { backendUrl, configAdd, setConfigAdd, allGames, getAllGames, currentPage, setCurrentPage, currentGame, setCurrentGame, configPreset, setConfigPreset, configName, setConfigName, configStatus, setConfigStatus, configEdit, setConfigEdit, configId, getOwnConfigs, showCfg, setShowCfg} = useContext(AppContent);
+    const { backendUrl, configAdd, setConfigAdd, allGames, getAllGames, currentPage, setCurrentPage, currentGame, setCurrentGame, configPreset, setConfigPreset, configName, setConfigName, configStatus, setConfigStatus, configEdit, setConfigEdit, configId, getOwnConfigs, showCfg, setShowCfg, likeCount} = useContext(AppContent);
 
     const [searchValue, setSearchValue] = useState('');
     const [searchList, setSearchList] = useState([]);
@@ -143,8 +143,9 @@ function AddConfig() {
                         </div>
                     ): (
                         <div className='add-config-menu'>
-                            <div className='add-config-name'>
-                                <h3>{configName}</h3>
+                            <div className='add-config-name add-cfg-name'>
+                                <h3>CONFIG NAME: <span style={{color:'var(--text-color)'}}>{configName}</span></h3>
+                                <h3><span style={{color:'var(--secondary-color)'}}>LIKES: <span style={{color:'var(--text-color)'}}>{likeCount}</span></span> </h3>
                             </div>
                         </div>
                     )}

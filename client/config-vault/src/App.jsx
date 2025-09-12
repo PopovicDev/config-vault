@@ -19,7 +19,7 @@ function App(){
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Homepage/>}/>
                 <Route path='games' element={<Games />}/>
-                <Route path='saved' element={<Saved />}/>
+                <Route path='liked-configurations' element={<Saved />}/>
                 <Route path='/profile/:username' element={<Profile/>}/>
             </Route>
             <Route path='/register' element={<Register/>}/>

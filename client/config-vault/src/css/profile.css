@@ -86,6 +86,10 @@
     word-break:break-all;
 }
 
+.heart-bg{
+    
+}
+
 /*MEDIA QUERIES*/
 @media only screen and (min-width:400px){
     .profile-info{

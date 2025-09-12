@@ -31,10 +31,11 @@ export const getUserProfile = async(req, res) => {
     try{
         const {userId} = req.body;
         const {username} = req.params;
-        const user = await pool.query('SELECT user_id, name, surname, username, likes FROM cfgvault."USERS" WHERE username = $1', [username]);
+        const user = await pool.query('SELECT user_id, name, surname, username FROM cfgvault."USERS" WHERE username = $1', [username]);
         const followingStatus = await pool.query('SELECT follower_id FROM cfgvault."FOLLOWERS" WHERE user_id = $1 AND follower_id = $2', [userId, user.rows[0].user_id]);
         const followingCount = await pool.query('SELECT COUNT(follower_id) AS following FROM cfgvault."FOLLOWERS" WHERE user_id = $1', [user.rows[0].user_id]);
         const followersCount = await pool.query('SELECT COUNT(follower_id) AS followers FROM cfgvault."FOLLOWERS" WHERE follower_id = $1', [user.rows[0].user_id]);
+        const likes = await pool.query('SELECT COUNT(likes.user_id) AS "likeCount" FROM cfgvault."LIKES" AS likes INNER JOIN cfgvault."CONFIGS" AS configs ON likes.config_id = configs.config_id WHERE configs.user_id = $1', [user.rows[0].user_id]);
 
         if(user.rows.length === 0){
             return res.json({success: false, message: "User not found"});
@@ -50,7 +51,7 @@ export const getUserProfile = async(req, res) => {
                 followingStatus: followingStatus.rows.length === 0 ? false : true,
                 followingCount: followingCount.rows.length === 0 ? '0' : followingCount.rows,
                 followersCount: followersCount.rows.length === 0 ? '0' : followersCount.rows,
-                likes: user.rows[0].likes
+                likes: likes.rows[0].likeCount
             },
         })
     }
@@ -233,6 +234,7 @@ export const getConfigs = async(req, res) => {
         const {userId, username} = req.body;
         let configs;
         let buttons;
+        let likes;
         
         const profileUser = await pool.query('SELECT user_id FROM cfgvault."USERS" WHERE username = $1', [username]);
 
@@ -246,13 +248,15 @@ export const getConfigs = async(req, res) => {
         }
         else{
             configs = await pool.query('SELECT config_id, config_name, game_name, settings, visibility FROM cfgvault."CONFIGS" WHERE user_id = $1 AND visibility = $2', [profileUser.rows[0].user_id, 'public']);
+            likes = await pool.query('SELECT cfg.config_id, cfg.config_id=lks.config_id AS liked FROM cfgvault."CONFIGS" AS cfg INNER JOIN cfgvault."LIKES" AS lks ON cfg.user_id = $1 WHERE lks.user_id = $2', [profileUser.rows[0].user_id, userId]);
             buttons = false;
         }
 
         res.json({
             success: true,
             configs: configs.rows.length === 0 ? '' : configs.rows,
-            buttons: buttons
+            buttons: buttons,
+            likes: likes === undefined ? '' : likes.rows
         })
     }
     catch(error){
@@ -264,13 +268,78 @@ export const showConfig = async(req, res) => {
     try{
         const {configId} = req.body;
         const config = await pool.query('SELECT config_name, game_name, settings, visibility FROM cfgvault."CONFIGS" WHERE config_id = $1', [configId]);
+        const likes = await pool.query('SELECT COUNT(user_id) AS "likeCount" FROM cfgvault."LIKES" WHERE config_id = $1', [configId]);
         if(config.rows.length === 0){
             return res.json({success: false, message: "Config not found"});
         }
+        if(likes.rows.length === 0){
+            return res.json({success: false, message: "No likes found"});
+        }
         res.json({
             success: true,
-            config: config.rows[0]
+            config: config.rows[0],
+            likes: likes.rows[0].likeCount
         });
+    }
+    catch(error){
+        res.json({success: false, message: error.message});
+    }
+}
+
+export const likeConfig = async (req, res) => {
+    try{
+        const {userId, configId} = req.body;
+
+        const user = await pool.query('SELECT * FROM cfgvault."USERS" WHERE user_id = $1', [userId]);
+        if(user.rows.length === 0){
+            return res.json({success: false, message: "User not found"});
+        }
+
+        const cfg = await pool.query('INSERT INTO cfgvault."LIKES" (user_id, config_id) VALUES ($1, $2)', [userId, configId]);
+        res.json({success:true, message:"Configuration liked!"});
+    }
+    catch(error){
+        res.json({success:false, message: error.message});
+    }
+}
+
+export const unlikeConfig = async (req, res) => {
+    try{
+        const {userId, configId} = req.body;
+
+        const user = await pool.query('SELECT * FROM cfgvault."USERS" WHERE user_id = $1', [userId]);
+        if(user.rows.length === 0){
+            return res.json({success: false, message: "User not found"});
+        }
+
+        const cfg = await pool.query('DELETE FROM cfgvault."LIKES" WHERE user_id = $1 AND config_id = $2', [userId, configId]);
+        
+        res.json({success:true, message:"Configuration unliked!"});
+    }
+    catch(error){
+        res.json({success:false, message: error.message});
+    }
+}
+
+export const checkLikes = async (req,res) => {
+    try{
+        const {userId, username} = req.body;
+        let likes;
+        
+        const profileUser = await pool.query('SELECT user_id FROM cfgvault."USERS" WHERE username = $1', [username]);
+
+        if(profileUser.rows.length === 0){
+            return res.json({success: false, message: "User not found"});
+        }
+
+        if(userId !== profileUser.rows[0].user_id){
+            likes = await pool.query('SELECT cfg.config_id, (lks.config_id IS NOT NULL) AS liked FROM cfgvault."CONFIGS" AS cfg FULL JOIN cfgvault."LIKES" AS lks  ON lks.config_id = cfg.config_id AND lks.user_id = $1 WHERE cfg.user_id = $2', [userId, profileUser.rows[0].user_id]);
+        }
+
+        res.json({
+            success: true,
+            likes: likes === undefined ? '' : likes.rows
+        })
     }
     catch(error){
         res.json({success: false, message: error.message});

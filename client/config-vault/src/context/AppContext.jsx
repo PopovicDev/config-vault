@@ -24,6 +24,8 @@ export function AppContextProvider({children}){
     const [configEdit, setConfigEdit] = useState(false);
     const [configId, setConfigId] = useState('');
     const [showCfg, setShowCfg] = useState(false);
+    const [likes, setLikes] = useState('');
+    const [likeCount, setLikeCount] = useState(0);
     const searchMenuRef = useRef(null);
 
     const getAuthState = async () => {
@@ -89,6 +91,22 @@ export function AppContextProvider({children}){
         }
     }
 
+    const checkLikes = async (name) => {
+        try{
+            const {data} = await axios.post(backendUrl + '/api/user/checkLikes', {username: name});
+            if(data.success){
+                toast.success(data.message);
+                setLikes(data.likes);
+            }
+            else {
+                toast.error(data.message);
+            }
+        }
+        catch(error){
+            toast.error(error.message);
+        }
+    }
+
     useEffect(() => {
         getAuthState();
     }, []);
@@ -114,7 +132,10 @@ export function AppContextProvider({children}){
         configStatus, setConfigStatus,
         configEdit, setConfigEdit,
         configId, setConfigId,
-        showCfg, setShowCfg
+        showCfg, setShowCfg,
+        likes, setLikes,
+        checkLikes,
+        likeCount, setLikeCount
     }
 
     return (

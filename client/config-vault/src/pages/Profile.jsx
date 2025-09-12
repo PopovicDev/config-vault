@@ -8,7 +8,7 @@ import Config from '../components/Config.jsx';
 
 function Profile() {
     const { username } = useParams();
-    const { backendUrl, userData, getUserData } = useContext(AppContent);
+    const { backendUrl, userData, getUserData, likes, checkLikes } = useContext(AppContent);
     const [userProfile, setUserProfile] = useState(false);
     const [profileConfigs, setProfileConfigs] = useState('');
     const [buttonsStatus, setButtonsStatus] = useState(false);
@@ -78,6 +78,10 @@ function Profile() {
     useEffect(() => {
         getConfigs();
     }, [username, profileConfigs]);
+
+    useEffect(()=>{
+        checkLikes(username);
+    }, [profileConfigs]);
     
     return (
         <div className='profile-page'>
@@ -115,7 +119,11 @@ function Profile() {
             <h4>{profileConfigs ? 'These are ' + username + ' configurations:' : 'This user still has no configurations.'}</h4>
             <div className='configz'>
                   {profileConfigs && profileConfigs.map((config, index) => (
-                    <Config key={index} game_name={config.game_name} name={config.config_name} config_preset={config.settings} config_status={config.visibility} id={config.config_id} buttonsStatus={buttonsStatus}/>
+                    <Config key={index} game_name={config.game_name} name={config.config_name} config_preset={config.settings} config_status={config.visibility} id={config.config_id} buttonsStatus={buttonsStatus} liked={
+                        Array.isArray(likes) && likes[index]
+                        ? likes[index].liked
+                        : false
+                   } getUserProfile={getUserProfile}/>
                   ))}
             </div>
         </div>

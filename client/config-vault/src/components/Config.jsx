@@ -3,8 +3,8 @@ import { useContext } from 'react';
 import axios from 'axios'
 import { toast } from 'react-toastify';
 
-function Config({img = "", game_name = 'Game name', name = "Config name", config_preset = "", config_status = "private", id="", buttonsStatus = true}) {
-    const {backendUrl, setConfigAdd, setCurrentPage, setCurrentGame, setConfigPreset, setConfigName, setConfigStatus, setConfigEdit, setConfigId, setShowCfg, getOwnConfigs} = useContext(AppContent);
+function Config({img = "", game_name = 'Game name', name = "Config name", config_preset = "", config_status = "private", id="", buttonsStatus = true, liked= false, getUserProfile}) {
+    const {backendUrl, setConfigAdd, setCurrentPage, setCurrentGame, setConfigPreset, setConfigName, setConfigStatus, setConfigEdit, setConfigId, setShowCfg, getOwnConfigs, likeCount, setLikeCount} = useContext(AppContent);
     
     const imageSrc = img || `../games_icons/${game_name.toLowerCase().replaceAll(' ', '_')}.jpg`;
 
@@ -50,9 +50,34 @@ function Config({img = "", game_name = 'Game name', name = "Config name", config
           setConfigStatus(data.config.visibility);
           setConfigEdit(false);
           setConfigId(id);
+          setLikeCount(data.likes);
         }
         else{
           toast.error(data.message);
+        }
+      }
+      catch(error){
+        toast.error(error.message);
+      }
+    }
+
+    const likeConfig = async () => {
+      try{
+        const {data} = await axios.post(backendUrl + '/api/user/likeConfig', {configId: id});
+        if(data.success){
+          getUserProfile();
+        }
+      }
+      catch(error){
+        toast.error(error.message);
+      }
+    }
+
+    const unlikeConfig = async () => {
+      try{
+        const {data} = await axios.post(backendUrl + '/api/user/unlikeConfig', {configId: id});
+        if(data.success){
+          getUserProfile();
         }
       }
       catch(error){
@@ -69,10 +94,16 @@ function Config({img = "", game_name = 'Game name', name = "Config name", config
         <div className='config-buttons'>
           {buttonsStatus ? (
             <>
+              <button aria-label='Show configuration' onClick={()=>showConfig()}><i className="fa-solid fa-eye"></i></button>
               <button aria-label='Edit configuration' onClick={()=>editConfig()}><i className="fa-solid fa-pen-to-square"></i></button>
               <button aria-label='Delete configuration' onClick={()=>deleteConfig()}><i className="fa-solid fa-x"></i></button>
             </>
-          ) : <button aria-label='Show configuration' onClick={()=>showConfig()}><i className="fa-solid fa-eye"></i></button>}
+          ) : (
+            <>
+              <button aria-label='Show configuration' onClick={()=>showConfig()}><i className="fa-solid fa-eye"></i></button>
+              <button aria-label='Like/unlike configuration' onClick={liked === true ? (()=>unlikeConfig()) : (()=>likeConfig())}><i className={liked === true ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i></button>
+            </>
+          )}
         </div>
       </div>
     )
